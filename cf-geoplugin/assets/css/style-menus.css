@@ -1,0 +1,42 @@
+.cfgp-menu-item-restriction{
+	clear: both;
+    margin-top: 0px;
+    float: left;
+    background: #f9f9f9;
+    width: 92%;
+    max-width: 361px;
+    padding: 5px 15px;
+}
+
+.cfgp-menu-item .cfgp-select-all {
+	border: none;
+    color: #555;
+    border-radius: 0;
+    margin-top: 0;
+    font-size: 12px;
+    padding-left: 0;
+    background: none;
+}
+
+.cfgp_select2,
+.cfgp_select2+.select2.select2-container{
+	width:100% !important;
+}
+
+#cfgp-menu-locations-wrap{
+	margin: 64px auto 128px 0;
+}
+
+@media all and (min-width:769px){
+	#cfgp-menu-locations-wrap{
+		width: 60%;
+	}
+}
+
+tbody#cfgp-menu-locations tr:nth-child(even) td{
+	background:#f7f7f7;
+}
+
+tbody#cfgp-menu-locations tr:hover td{
+	background:#f1f1f1;
+}
