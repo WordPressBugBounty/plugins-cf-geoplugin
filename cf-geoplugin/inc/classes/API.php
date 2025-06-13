@@ -276,6 +276,10 @@ if (!class_exists('CFGP_API', false)) :
                         } else {
                             $response[$key] = esc_html($value);
                         }
+						
+						if (is_numeric($value)) {
+							$response[$key] = strpos((string)$value, '.') !== false ? floatval($value) : intval($value);
+						}
                     }
 
                     // Reassign
