@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 8.9.4 =
+* Changed business model and reduced free lookup from 1000 to 500 views per day.
+
 = 8.9.3 =
 * Added PHP support for the older PHP versions (7.0 and bove)
 
