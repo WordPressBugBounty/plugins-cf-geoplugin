@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 8.9.8 =
+* Confirmed compatibility with WordPress 7.1
+
 = 8.9.7 =
 * Security: Fixed CVE-2026-12147 and improved security hardening.
 * Compatibility: Improved compatibility with the latest WordPress release and Plugin Check.
