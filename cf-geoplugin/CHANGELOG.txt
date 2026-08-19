@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 8.9.9 =
+* Security: Hardened Gravity Forms field value handling and validation.
+* Security: Improved authorization checks and data handling in SEO redirection tools.
+* Fixed SEO CSV import rollback handling to correctly preserve existing redirection data.
+
 = 8.9.8 =
 * Confirmed compatibility with WordPress 7.1
 
