@@ -435,7 +435,7 @@ if (!class_exists('CFGP_U', false)) : class CFGP_U
         $cookie_name = 'cfgp__' . str_rot13(substr($token, 6, 8));
         $time        = (int)apply_filters('cfgp_set_defender_cookie_timeout', HOUR_IN_SECONDS);
 
-        return self::setcookie($cookie_name, $token, $time);
+        return self::set_defender_cookie_value($cookie_name, $token, CFGP_TIME + $time);
     }
 
     /*
@@ -446,9 +446,42 @@ if (!class_exists('CFGP_U', false)) : class CFGP_U
     {
         $token       = self::KEY();
         $cookie_name = 'cfgp__' . str_rot13(substr($token, 6, 8));
-        $time        = ceil(CFGP_TIME - ((int)apply_filters('cfgp_set_defender_cookie_timeout', HOUR_IN_SECONDS) * 2));
+        $time        = CFGP_TIME - ((int)apply_filters('cfgp_set_defender_cookie_timeout', HOUR_IN_SECONDS) * 2);
 
-        return self::setcookie($cookie_name, $token, $time);
+        return self::set_defender_cookie_value($cookie_name, $token, $time);
+    }
+
+    /**
+     * Set the Defender-only bypass cookie without changing other plugin cookies.
+     */
+    private static function set_defender_cookie_value($name, $value, $expires)
+    {
+        if (headers_sent()) {
+            return false;
+        }
+
+        $path   = (defined('COOKIEPATH') && COOKIEPATH) ? COOKIEPATH : '/';
+        $domain = defined('COOKIE_DOMAIN') ? COOKIE_DOMAIN : '';
+        $secure = function_exists('is_ssl') ? is_ssl() : false;
+
+        if (PHP_VERSION_ID >= 70300) {
+            setcookie($name, $value, [
+                'expires'  => $expires,
+                'path'     => $path,
+                'domain'   => $domain,
+                'secure'   => $secure,
+                'httponly' => true,
+                'samesite' => 'Lax',
+            ]);
+        } else {
+            setcookie($name, $value, $expires, $path, $domain, $secure, true);
+        }
+
+        if (CFGP_Options::get('cache-support', 'yes') === 'yes') {
+            self::cache_flush();
+        }
+
+        return true;
     }
 
     /*
@@ -612,7 +645,7 @@ if (!class_exists('CFGP_U', false)) : class CFGP_U
      * Safe and SEO redirections to new location
      * @verson    1.0.0
     */
-    public static function redirect($location, int $status = 302, bool $safe = null)
+    public static function redirect($location, int $status = 302, $safe = null)
     {
         $status = absint($status);
 
@@ -1080,7 +1113,7 @@ if (!class_exists('CFGP_U', false)) : class CFGP_U
                     return self::recursive_array_search($needle, $value, $relative);
                 } else {
                     /* ver 1.1.0 */
-                    $value  = trim($value);
+                    $value  = trim((string) ($value ?? ''));
                     $needed = array_filter(array_map('trim', explode(',', $needle)));
 
                     foreach ($needed as $need) {
@@ -1420,7 +1453,7 @@ if (!class_exists('CFGP_U', false)) : class CFGP_U
     protected static function get_page_ID__private__query()
     {
         global $wpdb;
-        $actual_link = rtrim(sanitize_text_field($_SERVER['REQUEST_URI']), '/');
+        $actual_link = rtrim(sanitize_text_field($_SERVER['REQUEST_URI'] ?? ''), '/');
         $parts       = explode('/', $actual_link);
 
         if (!empty($parts)) {
@@ -2381,7 +2414,7 @@ if (!class_exists('CFGP_U', false)) : class CFGP_U
      */
     public static function the_content($string)
     {
-        $string = htmlspecialchars_decode($string);
+        $string = htmlspecialchars_decode((string) ($string ?? ''));
         $string = str_replace(']]>', ']]&gt;', $string);
 
         return $string;

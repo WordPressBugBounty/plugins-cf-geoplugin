@@ -1,13 +1,14 @@
 ﻿=== Geo Controller ===
 Contributors: ivijanstefan, creativform
 Donate link: https://ko-fi.com/ivijanstefanstipic
-Tags: Geo Location, WordPress Geolocation Plugin, Location-Based Personalization, User Location Detection, SEO Optimization
+Tags: geolocation, geotargeting, woocommerce, location, geoip
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 8.9.9
+Stable tag: 9.0.0
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Commercial: https://wpgeocontroller.com/
 
 Enhance your WordPress site with Geo Controller – a comprehensive plugin offering advanced location-based features and personalized content delivery.
 
@@ -414,6 +415,21 @@ Please inform us if any of these errors occur via contact form on our website [h
 
 == Changelog ==
 
+= 9.0.0 =
+* Compatibility: maintained PHP 7.0 to PHP 8.4 support.
+* Stabilized shortcode and Geo Banner caching across transient, database, and Redis modes.
+* Fixed cache cleanup and prevented Geo Banner caching when disabled.
+* Stabilized shortcode, GPS, Geo Banner, and Google Map attributes while preserving legacy support.
+* Added optional REST API transport for public authentication and lookups; AJAX remains the default.
+* Added API transport settings and endpoint documentation.
+* Preserved existing API responses and access-token behavior.
+* Security: protected Defender saves, previews, and bypass cookies with capability, nonce, and method checks.
+* Security: limited permanent Defender bypass to administrators and removed legacy recovery and bot bypasses.
+* Security: added single-use recovery links for temporary WordPress login access.
+* Security: protected global and page-level SEO settings with capability, nonce, and method checks.
+* Fixed postcode matching, country-city redirects, exclusion rules, empty CSV exports, and import rollbacks.
+* CSS display controls now preserve flex, grid, inline, inline-block, table, and other display modes.
+
 = 8.9.9 =
 * Security: Hardened Gravity Forms field value handling and validation.
 * Security: Improved authorization checks and data handling in SEO redirection tools.
@@ -556,10 +572,20 @@ Please inform us if any of these errors occur via contact form on our website [h
 
 == Upgrade Notice ==
 
-= 8.9.9 =
-* Security: Hardened Gravity Forms field value handling and validation.
-* Security: Improved authorization checks and data handling in SEO redirection tools.
-* Fixed SEO CSV import rollback handling to correctly preserve existing redirection data.
+= 9.0.0 =
+* Compatibility: maintained PHP 7.0 to PHP 8.4 support.
+* Stabilized shortcode and Geo Banner caching across transient, database, and Redis modes.
+* Fixed cache cleanup and prevented Geo Banner caching when disabled.
+* Stabilized shortcode, GPS, Geo Banner, and Google Map attributes while preserving legacy support.
+* Added optional REST API transport for public authentication and lookups; AJAX remains the default.
+* Added API transport settings and endpoint documentation.
+* Preserved existing API responses and access-token behavior.
+* Security: protected Defender saves, previews, and bypass cookies with capability, nonce, and method checks.
+* Security: limited permanent Defender bypass to administrators and removed legacy recovery and bot bypasses.
+* Security: added single-use recovery links for temporary WordPress login access.
+* Security: protected global and page-level SEO settings with capability, nonce, and method checks.
+* Fixed postcode matching, country-city redirects, exclusion rules, empty CSV exports, and import rollbacks.
+* CSS display controls now preserve flex, grid, inline, inline-block, table, and other display modes.
 
 == Other Notes ==
 

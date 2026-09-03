@@ -99,7 +99,7 @@ if (!class_exists('CFGP_Shortcodes', false)) : class CFGP_Shortcodes extends CFG
         $this->add_shortcode('cfgeo_gps', 'cfgeo_gps');
 
         // Beta shortcodes
-        if (CFGP_Options::get_beta('enable_simple_shortcode')) {
+        if (CFGP_Options::get('enable_beta', 0) && CFGP_Options::get_beta('enable_simple_shortcode')) {
             $this->add_action('wp_loaded', 'shortcode_automat_setup');
 
             $this->add_shortcode('geo', 'cf_geoplugin');
@@ -143,15 +143,19 @@ if (!class_exists('CFGP_Shortcodes', false)) : class CFGP_Shortcodes extends CFG
         global $post, $page;
 
         if (is_null($shortcode_exists)) {
+            $shortcode_exists = false;
+
             if (function_exists('get_the_content')) {
                 $all_content = get_the_content();
 
-                if ($all_content && strpos($all_content, '[cfgeo') !== false || strpos($all_content, '[cf_geo') !== false) {
+                if (
+                    is_string($all_content)
+                    && (
+                        strpos($all_content, '[cfgeo') !== false
+                        || strpos($all_content, '[cf_geo') !== false
+                    )
+                ) {
                     $shortcode_exists = true;
-                }
-
-                if ($shortcode_exists !== true) {
-                    $shortcode_exists = false;
                 }
             }
         }
@@ -335,7 +339,7 @@ if (!class_exists('CFGP_Shortcodes', false)) : class CFGP_Shortcodes extends CFG
      *
      * @since    7.0.0
      */
-    public function shortcode_automat_setup($atts)
+    public function shortcode_automat_setup($atts = [])
     {
         $CFGEO = CFGP_U::api(false, CFGP_Defaults::API_RETURN);
 
@@ -660,7 +664,7 @@ if (!class_exists('CFGP_Shortcodes', false)) : class CFGP_Shortcodes extends CFG
         }
 
         // Set transient
-        if (!CFGP_DB_Cache::get('cfgp-' . $transient_id)) {
+        if ($cache && !empty($transient_id) && !CFGP_DB_Cache::get('cfgp-' . $transient_id)) {
             CFGP_DB_Cache::set(
                 'cfgp-' . $transient_id,
                 array_merge(
@@ -834,6 +838,8 @@ LIMIT 1
         $att = (object)shortcode_atts([
             'latitude'  => CFGP_Options::get('map_latitude', CFGP_U::api('latitude')),
             'longitude' => CFGP_Options::get('map_longitude', CFGP_U::api('longitude')),
+            'lat'       => '',
+            'lng'       => '',
 
             'zoom'   => CFGP_Options::get('map_zoom'),
             'width'  => CFGP_Options::get('map_width'),
@@ -850,9 +856,10 @@ LIMIT 1
             'title'   => CFGP_U::api('address'),
             'address' => '',
             'pointer' => '',
+            'locations' => '',
         ], $atts, $tag);
 
-        $content = trim($content);
+        $content = trim((string) ($content ?? ''));
 
         $attributes   = [];
         $attributes[] = 'data-zoom="'.esc_attr($att->zoom).'"';
@@ -887,7 +894,34 @@ LIMIT 1
         $this->add_action('wp_footer', 'google_map_shortcode_script');
         $this->add_action('admin_footer', 'google_map_shortcode_script');
 
-        return CFGP_U::fragment_caching('<div class="CF_GeoPlugin_Google_Map_Shortcode" style="width:'.esc_attr($att->width).'; height:'.esc_attr($att->height).'"'.join(' ', $attributes).'>'.wp_kses_post(do_shortcode($content)).'</div>', $cache);
+        return CFGP_U::fragment_caching('<div class="CF_GeoPlugin_Google_Map_Shortcode" style="width:'.esc_attr($att->width).'; height:'.esc_attr($att->height).'" '.join(' ', $attributes).'>'.wp_kses_post(do_shortcode($content)).'</div>', $cache);
+    }
+
+    /**
+     * Get the Google Maps JavaScript API key.
+     *
+     * The fallback keeps maps working on sites that still retain the pre-8.0.0
+     * option array and have not yet migrated its map_api_key value.
+     *
+     * @return string
+     */
+    private function google_map_api_key()
+    {
+        $api_key = trim((string) CFGP_Options::get('map_api_key', ''));
+
+        if ($api_key !== '') {
+            return $api_key;
+        }
+
+        $legacy_options = CFGP_NETWORK_ADMIN
+            ? get_site_option('cf_geoplugin', [])
+            : get_option('cf_geoplugin', []);
+
+        if (is_array($legacy_options) && isset($legacy_options['map_api_key'])) {
+            return trim((string) $legacy_options['map_api_key']);
+        }
+
+        return '';
     }
 
     /*
@@ -895,7 +929,9 @@ LIMIT 1
     * @author Ivijan-Stefan Stipic
     **/
     public function google_map_shortcode_script()
-    { ?>
+    {
+        $api_key = $this->google_map_api_key();
+        ?>
 	<script>
 	/* <![CDATA[ */
 	/**
@@ -911,7 +947,7 @@ LIMIT 1
 				infoWindow : []
 			},
 			initMaps = document.getElementsByClassName('CF_GeoPlugin_Google_Map_Shortcode'), i, e;
-			
+
 		for(i=0; i<initMaps.length; i++)
 		{
 			// Main initializations for the map and the setup
@@ -1036,7 +1072,7 @@ LIMIT 1
 		}
 		else
 		{
-			var url = '<?php echo esc_url(CFGP_Defaults::API['googleapis_map']); ?>/api/js?key=<?php echo esc_attr(CFGP_Options::get('map_api_key')); ?>',
+			var url = '<?php echo esc_url(CFGP_Defaults::API['googleapis_map']); ?>/api/js?key=<?php echo esc_attr($api_key); ?>',
 				head = document.getElementsByTagName('head')[0],
 				script = document.createElement("script");
 			
@@ -1353,7 +1389,7 @@ LIMIT 1
             wp_die();
         }
 
-        $amount = filter_var(sanitize_text_field($_REQUEST['cfgp_currency_amount']), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $amount = filter_var(sanitize_text_field($_REQUEST['cfgp_currency_amount'] ?? ''), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
         if (empty($amount)) {
             $this->show_conversion_card_message('error_user');
@@ -1364,8 +1400,8 @@ LIMIT 1
         $api_params = [
             'referer' => CFGP_U::get_host(true),
         ];
-        $from    = strtoupper(sanitize_text_field($_REQUEST['cfgp_currency_from']));
-        $to      = strtoupper(sanitize_text_field($_REQUEST['cfgp_currency_to']));
+        $from    = strtoupper(sanitize_text_field($_REQUEST['cfgp_currency_from'] ?? ''));
+        $to      = strtoupper(sanitize_text_field($_REQUEST['cfgp_currency_to'] ?? ''));
         $api_url = add_query_arg(
             $api_params,
             CFGP_Defaults::API[(CFGP_Options::get('enable_ssl', 0) ? 'ssl_' : '') . 'converter'].'/'.$from.'/'.$to.'/'.$amount
@@ -1662,7 +1698,7 @@ LIMIT 1
     }
 
     // GPS
-    public function cfgeo_gps($attr, $content = '', $tag = 'cfgeo_cfgeo_gps')
+    public function cfgeo_gps($attr, $content = '', $tag = 'cfgeo_gps')
     {
 
         $cache = CFGP_U::is_attribute_exists('cache', $attr);
@@ -2086,7 +2122,7 @@ LIMIT 1
         }
 
         // Generate a unique transient ID based on the shortcode, options, and post ID
-        $transient_id = CFGP_U::hash(serialize(['cfgeo_' . $shortcode, $options, strip_tags($content, '<svg><img><form><input><select><textarea>'), $default, get_the_ID()]), 'whirlpool');
+        $transient_id = CFGP_U::hash(serialize(['cfgeo_' . $shortcode, $options, strip_tags((string) ($content ?? ''), '<svg><img><form><input><select><textarea>'), $default, get_the_ID()]), 'whirlpool');
 
         // Store transient with content, default values, and shortcode for 1 year
         if (!CFGP_DB_Cache::get('cfgp-' . $transient_id)) {
@@ -2123,7 +2159,7 @@ LIMIT 1
         $type         = sanitize_text_field(CFGP_U::request_string('type'));
 
         // Check if the transient exists
-        if ($data = get_transient('cfgp-' . $transient_id)) {
+        if ($data = CFGP_DB_Cache::get('cfgp-' . $transient_id)) {
 
             $content   = wp_kses_post($data['content']);
             $default   = wp_kses_post($data['default']);

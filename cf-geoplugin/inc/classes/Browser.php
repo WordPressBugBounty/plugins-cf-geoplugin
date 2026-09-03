@@ -21,63 +21,80 @@ if (!class_exists('CFGP_Browser', false)) :
 final class CFGP_Browser
 {
     // Browser constants
-    public const BROWSER_EDGE         = 'Microsoft Edge';
-    public const BROWSER_OPERA        = 'Opera';
-    public const BROWSER_OPERA_MINI   = 'Opera Mini';
-    public const BROWSER_WEBTV        = 'WebTV';
-    public const BROWSER_IE           = 'Internet Explorer';
-    public const BROWSER_POCKET_IE    = 'Pocket Internet Explorer';
-    public const BROWSER_KONQUEROR    = 'Konqueror';
-    public const BROWSER_ICAB         = 'iCab';
-    public const BROWSER_OMNIWEB      = 'OmniWeb';
-    public const BROWSER_FIREBIRD     = 'Firebird';
-    public const BROWSER_FIREFOX      = 'Firefox';
-    public const BROWSER_ICEWEASEL    = 'Iceweasel';
-    public const BROWSER_SHIRETOKO    = 'Shiretoko';
-    public const BROWSER_MOZILLA      = 'Mozilla';
-    public const BROWSER_AMAYA        = 'Amaya';
-    public const BROWSER_LYNX         = 'Lynx';
-    public const BROWSER_SAFARI       = 'Safari';
-    public const BROWSER_IPHONE       = 'iPhone';
-    public const BROWSER_IPOD         = 'iPod';
-    public const BROWSER_IPAD         = 'iPad';
-    public const BROWSER_CHROME       = 'Chrome';
-    public const BROWSER_BRAVE        = 'Brave';
-    public const BROWSER_VIVALDI      = 'Vivaldi';
-    public const BROWSER_OPERA_TOUCH  = 'Opera Touch';
-    public const BROWSER_ANDROID      = 'Android';
-    public const BROWSER_GOOGLEBOT    = 'GoogleBot';
-    public const BROWSER_SLURP        = 'Yahoo! Slurp';
-    public const BROWSER_W3CVALIDATOR = 'W3C Validator';
-    public const BROWSER_BLACKBERRY   = 'BlackBerry';
-    public const BROWSER_ICECAT       = 'IceCat';
-    public const BROWSER_NOKIA_S60    = 'Nokia S60 OSS Browser';
-    public const BROWSER_NOKIA        = 'Nokia Browser';
-    public const BROWSER_MSN          = 'MSN Browser';
-    public const BROWSER_MSNBOT       = 'MSN Bot';
-    public const BROWSER_WEBOS        = 'Web OS Browser';
-    public const BROWSER_FB           = 'Facebook Browser';
-    public const BROWSER_UNKNOWN      = 'unknown';
+    const BROWSER_EDGE         = 'Microsoft Edge';
+    const BROWSER_OPERA        = 'Opera';
+    const BROWSER_OPERA_MINI   = 'Opera Mini';
+    const BROWSER_WEBTV        = 'WebTV';
+    const BROWSER_IE           = 'Internet Explorer';
+    const BROWSER_POCKET_IE    = 'Pocket Internet Explorer';
+    const BROWSER_KONQUEROR    = 'Konqueror';
+    const BROWSER_ICAB         = 'iCab';
+    const BROWSER_OMNIWEB      = 'OmniWeb';
+    const BROWSER_FIREBIRD     = 'Firebird';
+    const BROWSER_FIREFOX      = 'Firefox';
+    const BROWSER_ICEWEASEL    = 'Iceweasel';
+    const BROWSER_SHIRETOKO    = 'Shiretoko';
+    const BROWSER_MOZILLA      = 'Mozilla';
+    const BROWSER_AMAYA        = 'Amaya';
+    const BROWSER_LYNX         = 'Lynx';
+    const BROWSER_SAFARI       = 'Safari';
+    const BROWSER_IPHONE       = 'iPhone';
+    const BROWSER_IPOD         = 'iPod';
+    const BROWSER_IPAD         = 'iPad';
+    const BROWSER_CHROME       = 'Chrome';
+    const BROWSER_BRAVE        = 'Brave';
+    const BROWSER_VIVALDI      = 'Vivaldi';
+    const BROWSER_OPERA_TOUCH  = 'Opera Touch';
+    const BROWSER_ANDROID      = 'Android';
+    const BROWSER_GOOGLEBOT    = 'GoogleBot';
+    const BROWSER_SLURP        = 'Yahoo! Slurp';
+    const BROWSER_W3CVALIDATOR = 'W3C Validator';
+    const BROWSER_BLACKBERRY   = 'BlackBerry';
+    const BROWSER_ICECAT       = 'IceCat';
+    const BROWSER_NOKIA_S60    = 'Nokia S60 OSS Browser';
+    const BROWSER_NOKIA        = 'Nokia Browser';
+    const BROWSER_MSN          = 'MSN Browser';
+    const BROWSER_MSNBOT       = 'MSN Bot';
+    const BROWSER_WEBOS        = 'Web OS Browser';
+    const BROWSER_FB           = 'Facebook Browser';
+    const BROWSER_INSTAGRAM    = 'Instagram Browser';
+    const BROWSER_TIKTOK       = 'TikTok Browser';
+    const BROWSER_SAMSUNG_INTERNET = 'Samsung Internet';
+    const BROWSER_CHROME_IOS   = 'Chrome iOS';
+    const BROWSER_FIREFOX_IOS  = 'Firefox iOS';
+    const BROWSER_OPERA_IOS    = 'Opera iOS';
+    const BROWSER_YANDEX       = 'Yandex Browser';
+    const BROWSER_UC           = 'UC Browser';
+    const BROWSER_HUAWEI       = 'Huawei Browser';
+    const BROWSER_MI           = 'Mi Browser';
+    const BROWSER_AMAZON_SILK  = 'Amazon Silk';
+    const BROWSER_PUFFIN       = 'Puffin';
+    const BROWSER_DUCKDUCKGO   = 'DuckDuckGo Browser';
+    const BROWSER_GALEON       = 'Galeon';
+    const BROWSER_NETPOSITIVE  = 'NetPositive';
+    const BROWSER_NETSCAPE_NAVIGATOR = 'Netscape Navigator';
+    const BROWSER_PHOENIX      = 'Phoenix';
+    const BROWSER_UNKNOWN      = 'unknown';
 
     // Platforms (kept for BC where used externally)
-    public const PLATFORM_WINDOWS     = 'Windows';
-    public const PLATFORM_WINDOWS_CE  = 'Windows CE';
-    public const PLATFORM_APPLE       = 'Apple';
-    public const PLATFORM_LINUX       = 'Linux';
-    public const PLATFORM_OS2         = 'OS/2';
-    public const PLATFORM_BEOS        = 'BeOS';
-    public const PLATFORM_IPHONE      = 'iPhone';
-    public const PLATFORM_IPOD        = 'iPod';
-    public const PLATFORM_IPAD        = 'iPad';
-    public const PLATFORM_BLACKBERRY  = 'BlackBerry';
-    public const PLATFORM_NOKIA       = 'Nokia';
-    public const PLATFORM_FREEBSD     = 'FreeBSD';
-    public const PLATFORM_OPENBSD     = 'OpenBSD';
-    public const PLATFORM_NETBSD      = 'NetBSD';
-    public const PLATFORM_SUNOS       = 'SunOS';
-    public const PLATFORM_OPENSOLARIS = 'OpenSolaris';
-    public const PLATFORM_ANDROID     = 'Android';
-    public const PLATFORM_WEBOS       = 'webOS';
+    const PLATFORM_WINDOWS     = 'Windows';
+    const PLATFORM_WINDOWS_CE  = 'Windows CE';
+    const PLATFORM_APPLE       = 'Apple';
+    const PLATFORM_LINUX       = 'Linux';
+    const PLATFORM_OS2         = 'OS/2';
+    const PLATFORM_BEOS        = 'BeOS';
+    const PLATFORM_IPHONE      = 'iPhone';
+    const PLATFORM_IPOD        = 'iPod';
+    const PLATFORM_IPAD        = 'iPad';
+    const PLATFORM_BLACKBERRY  = 'BlackBerry';
+    const PLATFORM_NOKIA       = 'Nokia';
+    const PLATFORM_FREEBSD     = 'FreeBSD';
+    const PLATFORM_OPENBSD     = 'OpenBSD';
+    const PLATFORM_NETBSD      = 'NetBSD';
+    const PLATFORM_SUNOS       = 'SunOS';
+    const PLATFORM_OPENSOLARIS = 'OpenSolaris';
+    const PLATFORM_ANDROID     = 'Android';
+    const PLATFORM_WEBOS       = 'webOS';
 
     // State
     private $_agent        = '';
@@ -95,19 +112,33 @@ final class CFGP_Browser
     private $_ch_brands       = [];   // parsed brands => versions
     private $_ch_platform     = null; // Sec-CH-UA-Platform
     private $_ch_platform_ver = null; // Sec-CH-UA-Platform-Version
+    private $_ch_mobile       = null; // Sec-CH-UA-Mobile (?0 or ?1)
+    private $_client_hints    = [];
+    private $_use_client_hints = true;
 
     /**
      * Singleton factory through CFGP_Cache (kept for BC).
      */
     public static function instance($useragent = '')
     {
-        $class    = self::class;
-        $instance = function_exists('CFGP_Cache::get') ? CFGP_Cache::get($class) : null;
+        $use_client_hints = ($useragent === '');
+        $effective_agent  = $use_client_hints ? self::current_user_agent() : (string) $useragent;
+        $cache_key        = self::class . '-' . hash('sha256', $effective_agent . '|' . ($use_client_hints ? self::client_hints_fingerprint() : ''));
+        $instance         = null;
 
-        if (!$instance) {
+        if (class_exists('CFGP_Cache') && method_exists('CFGP_Cache', 'get')) {
+            $instance = CFGP_Cache::get($cache_key);
+        }
+
+        if ($instance instanceof self) {
+            // Callers may call setUserAgent(); never expose the cached object itself.
+            return clone $instance;
+        }
+
+        if (!($instance instanceof self)) {
             $instance = new self($useragent);
-            if (function_exists('CFGP_Cache::set')) {
-                CFGP_Cache::set($class, $instance);
+            if (class_exists('CFGP_Cache') && method_exists('CFGP_Cache', 'set')) {
+                CFGP_Cache::set($cache_key, clone $instance);
             }
         }
 
@@ -119,11 +150,12 @@ final class CFGP_Browser
      */
     private function __construct($useragent = '')
     {
-        $this->reset();
-
         if ($useragent !== '') {
-            $this->setUserAgent($useragent);
+            $this->reset(false);
+            $this->_agent = (string) $useragent;
+            $this->determine();
         } else {
+            $this->reset(true);
             $this->determine();
         }
     }
@@ -131,8 +163,9 @@ final class CFGP_Browser
     /**
      * Reset state from globals and Client Hints.
      */
-    public function reset(): void
+    public function reset($use_client_hints = true)
     {
+        $this->_use_client_hints = (bool) $use_client_hints;
         $ua = isset($_SERVER['HTTP_USER_AGENT']) ? (string) $_SERVER['HTTP_USER_AGENT'] : '';
         if (function_exists('sanitize_text_field')) {
             $ua = sanitize_text_field($ua);
@@ -147,11 +180,27 @@ final class CFGP_Browser
         $this->_is_robot     = false;
         $this->_aol_version  = self::BROWSER_UNKNOWN;
 
-        // Read Client Hints if present
-        $this->_ch_brands_raw   = $this->server('HTTP_SEC_CH_UA_FULL_VERSION_LIST') ?: $this->server('HTTP_SEC_CH_UA');
-        $this->_ch_brands       = $this->parseBrands($this->_ch_brands_raw);
-        $this->_ch_platform     = $this->stripQuotes($this->server('HTTP_SEC_CH_UA_PLATFORM'));
-        $this->_ch_platform_ver = $this->stripQuotes($this->server('HTTP_SEC_CH_UA_PLATFORM_VERSION'));
+        // Client Hints describe only the current request, never a supplied historic UA.
+        $this->_ch_brands_raw = null;
+        $this->_ch_brands = [];
+        $this->_ch_platform = null;
+        $this->_ch_platform_ver = null;
+        $this->_ch_mobile = null;
+        $this->_client_hints = [];
+
+        if ($this->_use_client_hints && class_exists('CFGP_ClientHints')) {
+            $hints = CFGP_ClientHints::detect();
+            if (is_array($hints)) {
+                $this->_ch_brands_raw = isset($hints['brands']) ? $hints['brands'] : null;
+                $this->_ch_brands = $this->parseBrands($this->_ch_brands_raw);
+                $this->_ch_platform = isset($hints['platform']) ? $hints['platform'] : null;
+                $this->_ch_platform_ver = isset($hints['platformVersion']) ? $hints['platformVersion'] : null;
+                $this->_ch_mobile = isset($hints['mobile']) && $hints['mobile'] === true ? '?1' : (isset($hints['mobile']) && $hints['mobile'] === false ? '?0' : null);
+                if (!empty($_SERVER['HTTP_SEC_CH_UA_PLATFORM']) && is_string($_SERVER['HTTP_SEC_CH_UA_PLATFORM'])) {
+                    $this->_client_hints = $hints;
+                }
+            }
+        }
     }
 
     // ----------------- Public API -----------------
@@ -188,7 +237,7 @@ final class CFGP_Browser
         return $this->_version;
     }
 
-    public function setVersion($version): void
+    public function setVersion($version)
     {
         $this->_version = preg_replace('/[^0-9a-zA-Z\.\-]/', '', (string) $version);
         if ($this->_version === '') {
@@ -201,7 +250,7 @@ final class CFGP_Browser
         return $this->_aol_version;
     }
 
-    public function setAolVersion($version): void
+    public function setAolVersion($version)
     {
         $this->_aol_version = preg_replace('/[^0-9a-zA-Z\.]/', '', (string) $version);
         if ($this->_aol_version === '') {
@@ -224,17 +273,21 @@ final class CFGP_Browser
         return $this->_is_robot;
     }
 
-    public function setAol($isAol): void
+    public function setAol($isAol)
     {
         $this->_is_aol = (bool) $isAol;
     }
 
-    protected function setMobile($value = true): void
+    protected function setMobile($value = true)
     {
+        if ($value && $this->_ch_mobile === '?0') {
+            return;
+        }
+
         $this->_is_mobile = (bool) $value;
     }
 
-    protected function setRobot($value = true): void
+    protected function setRobot($value = true)
     {
         $this->_is_robot = (bool) $value;
     }
@@ -244,9 +297,9 @@ final class CFGP_Browser
         return $this->_agent;
     }
 
-    public function setUserAgent($agent_string): void
+    public function setUserAgent($agent_string)
     {
-        $this->reset();
+        $this->reset(false);
         $this->_agent = (string) $agent_string;
         $this->determine();
     }
@@ -266,8 +319,9 @@ final class CFGP_Browser
 
     // ----------------- Core detection -----------------
 
-    protected function determine(): void
+    protected function determine()
     {
+        $this->checkMobile();
         $this->checkPlatform();   // via CFGP_OS::get($ua)
         $this->checkBrowsers();   // CH-aware + UA fallback
         $this->checkForAol();
@@ -280,32 +334,44 @@ final class CFGP_Browser
             return true;
         }
 
-        // Client-Hints brand-aware Chromium forks (Brave, Edge, Vivaldi, Opera)
+        // Client-Hints provide reliable identification for otherwise indistinguishable forks.
         if ($this->checkChromiumBrands()) {
             return true;
         }
 
-        // Traditional checks
+        // Specific browser tokens must be checked before their shared engines.
         return (
-            $this->checkBrowserEdge()
-            || $this->checkBrowserWebTv()
-            || $this->checkBrowserInternetExplorer()
+            $this->checkBrowserFacebook()
+            || $this->checkBrowserInstagram()
+            || $this->checkBrowserTikTok()
+            || $this->checkBrowserSamsungInternet()
+            || $this->checkBrowserEdge()
             || $this->checkBrowserOpera()
-            || $this->checkBrowserGaleon()
-            || $this->checkBrowserNetscapeNavigator9Plus()
+            || $this->checkBrowserYandex()
+            || $this->checkBrowserVivaldi()
+            || $this->checkBrowserDuckDuckGo()
+            || $this->checkBrowserUC()
+            || $this->checkBrowserHuawei()
+            || $this->checkBrowserMi()
+            || $this->checkBrowserAmazonSilk()
+            || $this->checkBrowserPuffin()
+            || $this->checkBrowserFirefoxIOS()
             || $this->checkBrowserFirefox()
+            || $this->checkBrowserChromeIOS()
             || $this->checkBrowserChrome()
-            || $this->checkBrowserOmniWeb()
-            // mobile
             || $this->checkBrowserAndroid()
             || $this->checkBrowseriPad()
             || $this->checkBrowseriPod()
             || $this->checkBrowseriPhone()
+            || $this->checkBrowserSafari()
+            || $this->checkBrowserWebOS()
+            || $this->checkBrowserWebTv()
+            || $this->checkBrowserInternetExplorer()
+            || $this->checkBrowserGaleon()
+            || $this->checkBrowserNetscapeNavigator9Plus()
+            || $this->checkBrowserOmniWeb()
             || $this->checkBrowserBlackBerry()
             || $this->checkBrowserNokia()
-            // webkit generic
-            || $this->checkBrowserSafari()
-            // others
             || $this->checkBrowserNetPositive()
             || $this->checkBrowserFirebird()
             || $this->checkBrowserKonqueror()
@@ -328,27 +394,21 @@ final class CFGP_Browser
             return false;
         }
 
-        // Brand precedence
+        // Only brands that identify a distinct browser belong here. Chromium and
+        // Chrome brands intentionally fall through to the UA parser.
         $order = [
             'Brave'    => self::BROWSER_BRAVE,
             'Microsoft Edge' => self::BROWSER_EDGE,
             'Edge'     => self::BROWSER_EDGE,
             'Vivaldi'  => self::BROWSER_VIVALDI,
             'Opera'    => self::BROWSER_OPERA,
-            'Chromium' => self::BROWSER_CHROME, // treat as Chrome if nothing else
-            'Google Chrome' => self::BROWSER_CHROME,
-            'Chrome'   => self::BROWSER_CHROME,
         ];
 
         foreach ($order as $brand => $label) {
             foreach ($this->_ch_brands as $b => $ver) {
-                if (stripos($b, $brand) !== false) {
+                if (strcasecmp($b, $brand) === 0) {
                     $this->setBrowser($label);
-                    $this->setVersion($ver ?: $this->extractChromiumVersionFromUA());
-                    // Mobile hint
-                    if (stripos($this->_agent, 'Mobile') !== false) {
-                        $this->setMobile(true);
-                    }
+                    $this->setVersion($this->edgeVersionFromUA() ?: ($ver ?: $this->extractChromiumVersionFromUA()));
                     return true;
                 }
             }
@@ -357,7 +417,7 @@ final class CFGP_Browser
         return false;
     }
 
-    private function parseBrands(?string $raw): array
+    private function parseBrands($raw): array
     {
         if (!$raw) return [];
         // Example: Chromium;v="139.0.0.0", "Brave";v="1.69.153"
@@ -390,7 +450,7 @@ final class CFGP_Browser
         return self::BROWSER_UNKNOWN;
     }
 
-    private function stripQuotes(?string $v): ?string
+    private function stripQuotes($v)
     {
         if ($v === null) return null;
         $v = trim($v);
@@ -401,9 +461,74 @@ final class CFGP_Browser
         return $v;
     }
 
-    private function server(string $key): ?string
+    private function server(string $key)
     {
         return isset($_SERVER[$key]) && is_string($_SERVER[$key]) ? $_SERVER[$key] : null;
+    }
+
+    /**
+     * @return string
+     */
+    private static function current_user_agent()
+    {
+        return isset($_SERVER['HTTP_USER_AGENT']) && is_string($_SERVER['HTTP_USER_AGENT'])
+            ? $_SERVER['HTTP_USER_AGENT']
+            : '';
+    }
+
+    /**
+     * Cache only request-scoped hints that affect browser or mobile detection.
+     *
+     * @return string
+     */
+    private static function client_hints_fingerprint()
+    {
+        $keys = [
+            'HTTP_SEC_CH_UA_FULL_VERSION_LIST',
+            'HTTP_SEC_CH_UA',
+            'HTTP_SEC_CH_UA_PLATFORM',
+            'HTTP_SEC_CH_UA_PLATFORM_VERSION',
+            'HTTP_SEC_CH_UA_MOBILE',
+        ];
+        $values = [];
+
+        foreach ($keys as $key) {
+            $values[] = isset($_SERVER[$key]) && is_string($_SERVER[$key]) ? $_SERVER[$key] : '';
+        }
+
+        return implode('|', $values);
+    }
+
+    /**
+     * Respect a valid Client Hint; otherwise recognize established mobile UA tokens.
+     */
+    private function checkMobile()
+    {
+        if ($this->_ch_mobile === '?1') {
+            $this->_is_mobile = true;
+            return;
+        }
+
+        if ($this->_ch_mobile === '?0') {
+            $this->_is_mobile = false;
+            return;
+        }
+
+        if (preg_match('/(?:\bMobile\b|Windows Phone|Android|HarmonyOS|iPhone|iPad|iPod|KaiOS|Opera Mini|Opera Touch|EdgA|EdgiOS|CriOS|FxiOS|SamsungBrowser|UCBrowser|HuaweiBrowser|MiuiBrowser|Silk|Puffin|BlackBerry|Ubuntu Touch|FBAV|Instagram|TikTok)/i', $this->_agent)) {
+            $this->_is_mobile = true;
+        }
+    }
+
+    /**
+     * @return string|false
+     */
+    private function edgeVersionFromUA()
+    {
+        if (preg_match('/\b(?:EdgiOS|EdgA|Edg|Edge)\/([0-9\.]+)/i', $this->_agent, $match)) {
+            return $match[1];
+        }
+
+        return false;
     }
 
     // ----------------- Browser checks (UA fallback) -----------------
@@ -415,7 +540,7 @@ final class CFGP_Browser
                 $this->setVersion($aversion[1]);
                 $this->setBrowser(self::BROWSER_FB);
                 return true;
-            } elseif (preg_match("(WEBOS23\s|webos\s)([0-9A-Z\.]+)(\;|\s){1}/", $this->_agent, $aversion)) {
+            } elseif (preg_match('/(?:WEBOS23\s|webos\s)([0-9A-Z\.]+)(?:;|\s)/i', $this->_agent, $aversion)) {
                 $this->setVersion($aversion[2]);
                 $this->setBrowser(self::BROWSER_WEBOS);
                 return true;
@@ -426,12 +551,161 @@ final class CFGP_Browser
 
     protected function checkBrowserEdge(): bool
     {
-        // Edg/xxx (desktop), EdgA/xxx (Android)
-        if (preg_match('/\bEdg[A|e|i|]\/([0-9\.]+)/', $this->_agent, $m)) {
-            $this->setVersion($m[1]);
+        // Edg/ (desktop), EdgA/ (Android), EdgiOS/ and legacy Edge/.
+        if (($version = $this->edgeVersionFromUA()) !== false) {
+            $this->setVersion($version);
             $this->setBrowser(self::BROWSER_EDGE);
             return true;
         }
+        return false;
+    }
+
+    protected function checkBrowserFacebook(): bool
+    {
+        $match = [];
+
+        if (preg_match('/\bFBAV\/([0-9\.]+)/i', $this->_agent, $match) || preg_match('/\bFBAN\/[A-Za-z0-9._-]+/i', $this->_agent)) {
+            $this->setBrowser(self::BROWSER_FB);
+            $this->setMobile(true);
+            if (!empty($match[1])) {
+                $this->setVersion($match[1]);
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function checkBrowserInstagram(): bool
+    {
+        if (preg_match('/\bInstagram\s+([0-9\.]+)/i', $this->_agent, $match)) {
+            $this->setBrowser(self::BROWSER_INSTAGRAM);
+            $this->setVersion($match[1]);
+            $this->setMobile(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function checkBrowserTikTok(): bool
+    {
+        $match = [];
+
+        if (preg_match('/\bTikTok\/([0-9\.]+)/i', $this->_agent, $match) || preg_match('/\bBytedanceWebview(?:\/([0-9\.]+))?/i', $this->_agent, $match)) {
+            $this->setBrowser(self::BROWSER_TIKTOK);
+            if (!empty($match[1])) {
+                $this->setVersion($match[1]);
+            }
+            $this->setMobile(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function checkBrowserSamsungInternet(): bool
+    {
+        if (preg_match('/\bSamsungBrowser\/([0-9\.]+)/i', $this->_agent, $match)) {
+            $this->setBrowser(self::BROWSER_SAMSUNG_INTERNET);
+            $this->setVersion($match[1]);
+            $this->setMobile(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function checkBrowserYandex(): bool
+    {
+        if (preg_match('/\bYaBrowser\/([0-9\.]+)/i', $this->_agent, $match)) {
+            $this->setBrowser(self::BROWSER_YANDEX);
+            $this->setVersion($match[1]);
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function checkBrowserVivaldi(): bool
+    {
+        if (preg_match('/\bVivaldi\/([0-9\.]+)/i', $this->_agent, $match)) {
+            $this->setBrowser(self::BROWSER_VIVALDI);
+            $this->setVersion($match[1]);
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function checkBrowserDuckDuckGo(): bool
+    {
+        if (preg_match('/\b(?:DuckDuckGo|Ddg)\/([0-9\.]+)/i', $this->_agent, $match)) {
+            $this->setBrowser(self::BROWSER_DUCKDUCKGO);
+            $this->setVersion($match[1]);
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function checkBrowserUC(): bool
+    {
+        if (preg_match('/\b(?:UCBrowser|UCWEB)\/([0-9\.]+)/i', $this->_agent, $match)) {
+            $this->setBrowser(self::BROWSER_UC);
+            $this->setVersion($match[1]);
+            $this->setMobile(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function checkBrowserHuawei(): bool
+    {
+        if (preg_match('/\bHuaweiBrowser\/([0-9\.]+)/i', $this->_agent, $match)) {
+            $this->setBrowser(self::BROWSER_HUAWEI);
+            $this->setVersion($match[1]);
+            $this->setMobile(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function checkBrowserMi(): bool
+    {
+        if (preg_match('/\bMiuiBrowser\/([0-9A-Za-z\.\-]+)/i', $this->_agent, $match)) {
+            $this->setBrowser(self::BROWSER_MI);
+            $this->setVersion($match[1]);
+            $this->setMobile(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function checkBrowserAmazonSilk(): bool
+    {
+        if (preg_match('/\bSilk\/([0-9\.]+)/i', $this->_agent, $match)) {
+            $this->setBrowser(self::BROWSER_AMAZON_SILK);
+            $this->setVersion($match[1]);
+            $this->setMobile(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function checkBrowserPuffin(): bool
+    {
+        if (preg_match('/\bPuffin\/([0-9\.]+)/i', $this->_agent, $match)) {
+            $this->setBrowser(self::BROWSER_PUFFIN);
+            $this->setVersion($match[1]);
+            $this->setMobile(true);
+            return true;
+        }
+
         return false;
     }
 
@@ -558,18 +832,23 @@ final class CFGP_Browser
             }
             return true;
         }
-        if (stripos($this->_agent, 'OPR/') !== false || stripos($this->_agent, 'Opera') !== false) {
+        if (preg_match('/\bOPiOS\/([0-9\.]+)/i', $this->_agent, $m)) {
+            $this->setBrowser(self::BROWSER_OPERA_IOS);
+            $this->setVersion($m[1]);
+            $this->setMobile(true);
+            return true;
+        }
+        if (preg_match('/\bOPT\/([0-9\.]+)/i', $this->_agent, $m)) {
+            $this->setBrowser(self::BROWSER_OPERA_TOUCH);
+            $this->setVersion($m[1]);
+            $this->setMobile(true);
+            return true;
+        }
+        if (stripos($this->_agent, 'OPR/') !== false || preg_match('/\bOpera(?:\/|\s)/i', $this->_agent)) {
             $this->setBrowser(self::BROWSER_OPERA);
             if (preg_match('/(?:OPR|Opera)\/([0-9\.]+)/i', $this->_agent, $m)) {
                 $this->setVersion($m[1]);
             } elseif (preg_match('/Version\/([0-9\.]+)/i', $this->_agent, $m)) {
-                $this->setVersion($m[1]);
-            }
-            return true;
-        }
-        if (stripos($this->_agent, 'OPT/') !== false) {
-            $this->setBrowser(self::BROWSER_OPERA_TOUCH);
-            if (preg_match('/OPT\/([0-9\.]+)/i', $this->_agent, $m)) {
                 $this->setVersion($m[1]);
             }
             return true;
@@ -579,15 +858,20 @@ final class CFGP_Browser
 
     protected function checkBrowserChrome(): bool
     {
-        // Avoid false positive if Edge/Opera already matched
-        if (stripos($this->_agent, 'Chrome') !== false && stripos($this->_agent, 'Edg') === false && stripos($this->_agent, 'OPR') === false) {
-            // Some Brave UAs hide brand; CH covers that earlier.
+        if (preg_match('/\bChrome\/([0-9\.]+)/i', $this->_agent, $m)) {
             $this->setBrowser(self::BROWSER_CHROME);
-            if (preg_match('/Chrome\/([0-9\.]+)/i', $this->_agent, $m)) {
-                $this->setVersion($m[1]);
-            }
+            $this->setVersion($m[1]);
             return true;
         }
+
+        foreach ($this->_ch_brands as $brand => $version) {
+            if (strcasecmp($brand, 'Google Chrome') === 0 || strcasecmp($brand, 'Chromium') === 0) {
+                $this->setBrowser(self::BROWSER_CHROME);
+                $this->setVersion($version ?: self::BROWSER_UNKNOWN);
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -736,7 +1020,6 @@ final class CFGP_Browser
 
     protected function checkBrowserFirefox(): bool
     {
-        // Avoid Safari false positive by ensuring 'safari' not present without 'firefox'
         if (stripos($this->_agent, 'Firefox') !== false) {
             $this->setBrowser(self::BROWSER_FIREFOX);
             if (preg_match('/Firefox[\/ ]([0-9\.]+)/i', $this->_agent, $m)) {
@@ -746,6 +1029,30 @@ final class CFGP_Browser
             }
             return true;
         }
+        return false;
+    }
+
+    protected function checkBrowserFirefoxIOS(): bool
+    {
+        if (preg_match('/\bFxiOS\/([0-9\.]+)/i', $this->_agent, $m)) {
+            $this->setBrowser(self::BROWSER_FIREFOX_IOS);
+            $this->setVersion($m[1]);
+            $this->setMobile(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function checkBrowserChromeIOS(): bool
+    {
+        if (preg_match('/\bCriOS\/([0-9\.]+)/i', $this->_agent, $m)) {
+            $this->setBrowser(self::BROWSER_CHROME_IOS);
+            $this->setVersion($m[1]);
+            $this->setMobile(true);
+            return true;
+        }
+
         return false;
     }
 
@@ -849,14 +1156,14 @@ final class CFGP_Browser
 
     protected function checkBrowserAndroid(): bool
     {
-        if (stripos($this->_agent, 'Android') !== false) {
+        if (
+            stripos($this->_agent, 'Android') !== false
+            && preg_match('/\bVersion\/([0-9\.]+)/i', $this->_agent, $m)
+            && stripos($this->_agent, 'Safari') !== false
+        ) {
             $this->setBrowser(self::BROWSER_ANDROID);
             $this->setMobile(true);
-            if (preg_match('/Android\s+([0-9\.]+)/i', $this->_agent, $m)) {
-                $this->setVersion($m[1]);
-            } else {
-                $this->setVersion(self::BROWSER_UNKNOWN);
-            }
+            $this->setVersion($m[1]);
             return true;
         }
         return false;
@@ -864,9 +1171,9 @@ final class CFGP_Browser
 
     // ----------------- Platform via CFGP_OS -----------------
 
-    protected function checkPlatform(): void
+    protected function checkPlatform()
     {
-        if (class_exists('CFGP_ClientHints')) {
+        if ($this->_use_client_hints && class_exists('CFGP_ClientHints')) {
             // Encourage headers early in bootstrap:
             add_action('init', function () {
 				if (class_exists('CFGP_ClientHints')) {
@@ -874,10 +1181,12 @@ final class CFGP_Browser
 				}
 			});
 
-			// Get information (if available)
-            $ch = CFGP_ClientHints::detect();
-            if (!empty($ch['osName']??null) && $ch['osName'] !== 'Unknown') {
-                $this->_platform = $ch['osName'];
+            if (
+                !empty($this->_client_hints['osName'])
+                && $this->_client_hints['osName'] !== 'Unknown'
+                && (!isset($this->_client_hints['platform']) || $this->_client_hints['platform'] !== 'Windows' || !empty($_SERVER['HTTP_SEC_CH_UA_PLATFORM_VERSION']))
+            ) {
+                $this->_platform = $this->_client_hints['osName'];
             }
         }
 
