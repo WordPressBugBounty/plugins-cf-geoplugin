@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 9.0.1 =
+* Fixed license renewal synchronization for renewed subscription activations.
+* Added automatic renewal revalidation for valid subscription activations.
+* Improved expired-license renewal diagnostics and administrator guidance.
+
 = 9.0.0 =
 * Compatibility: maintained PHP 7.0 to PHP 8.4 support.
 * Stabilized shortcode and Geo Banner caching across transient, database, and Redis modes.

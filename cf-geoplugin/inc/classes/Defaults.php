@@ -132,19 +132,19 @@ if (!class_exists('CFGP_Defaults', false)) : class CFGP_Defaults
      */
     const API = [
         // Standard Geo Controller API URLs
-        'main'         => 'http://api.wpgeocontroller.com/v2/',
-        'authenticate' => 'http://api.wpgeocontroller.com/v2/authentication',
-        'converter'    => 'http://api.wpgeocontroller.com/v2/currency-converter',
-        'countries'    => 'http://api.wpgeocontroller.com/v2/countries',
-        'regions'      => 'http://api.wpgeocontroller.com/v2/regions',
-        'cities'       => 'http://api.wpgeocontroller.com/v2/cities',
+        'main'         => 'http://api.wpgeocontroller.com/v3/',
+        'authenticate' => 'http://api.wpgeocontroller.com/v3/authentication',
+        'converter'    => 'http://api.wpgeocontroller.com/v3/currency-converter',
+        'countries'    => 'http://api.wpgeocontroller.com/v3/countries',
+        'regions'      => 'http://api.wpgeocontroller.com/v3/regions',
+        'cities'       => 'http://api.wpgeocontroller.com/v3/cities',
         // SSL URLs
-        'ssl_main'         => 'https://api.wpgeocontroller.com/v2/',
-        'ssl_authenticate' => 'https://api.wpgeocontroller.com/v2/authentication',
-        'ssl_converter'    => 'https://api.wpgeocontroller.com/v2/currency-converter',
-        'ssl_countries'    => 'https://api.wpgeocontroller.com/v2/countries',
-        'ssl_regions'      => 'https://api.wpgeocontroller.com/v2/regions',
-        'ssl_cities'       => 'https://api.wpgeocontroller.com/v2/cities',
+        'ssl_main'         => 'https://api.wpgeocontroller.com/v3/',
+        'ssl_authenticate' => 'https://api.wpgeocontroller.com/v3/authentication',
+        'ssl_converter'    => 'https://api.wpgeocontroller.com/v3/currency-converter',
+        'ssl_countries'    => 'https://api.wpgeocontroller.com/v3/countries',
+        'ssl_regions'      => 'https://api.wpgeocontroller.com/v3/regions',
+        'ssl_cities'       => 'https://api.wpgeocontroller.com/v3/cities',
         // 3rd party IPFY free API call for finding real IP address on the local machines
         'ipfy'           => 'https://api.ipify.org',
         'smartIP'        => 'https://smart-ip.net/myip',

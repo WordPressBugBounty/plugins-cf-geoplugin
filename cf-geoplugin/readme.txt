@@ -5,7 +5,7 @@ Tags: geolocation, geotargeting, woocommerce, location, geoip
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 9.0.0
+Stable tag: 9.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Commercial: https://wpgeocontroller.com/
@@ -415,6 +415,11 @@ Please inform us if any of these errors occur via contact form on our website [h
 
 == Changelog ==
 
+= 9.0.1 =
+* Fixed license renewal synchronization for renewed subscription activations.
+* Added automatic renewal revalidation for valid subscription activations.
+* Improved expired-license renewal diagnostics and administrator guidance.
+
 = 9.0.0 =
 * Compatibility: maintained PHP 7.0 to PHP 8.4 support.
 * Stabilized shortcode and Geo Banner caching across transient, database, and Redis modes.
@@ -571,6 +576,11 @@ Please inform us if any of these errors occur via contact form on our website [h
 * Improved javascript algorithms
 
 == Upgrade Notice ==
+
+= 9.0.1 =
+* Fixed license renewal synchronization for renewed subscription activations.
+* Added automatic renewal revalidation for valid subscription activations.
+* Improved expired-license renewal diagnostics and administrator guidance.
 
 = 9.0.0 =
 * Compatibility: maintained PHP 7.0 to PHP 8.4 support.
