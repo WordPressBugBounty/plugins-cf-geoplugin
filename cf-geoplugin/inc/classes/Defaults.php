@@ -57,7 +57,7 @@ if (!class_exists('CFGP_Defaults', false)) : class CFGP_Defaults
     const OPTIONS = [
         'enable_top_bar_menu'     => 1,
         'enable_top_bar_currency' => 1,
-        'enable_beta'             => 1,
+        'enable_beta'             => 0,
         'enable_simple_shortcode' => 1,
         'enable_seo_csv'          => 1,
         'enable_seo_redirection'  => 1,
@@ -124,7 +124,7 @@ if (!class_exists('CFGP_Defaults', false)) : class CFGP_Defaults
 
     // Beta options
     const BETA_OPTIONS = [
-        'enable_simple_shortcode',
+        'enable_redis_cache',
     ];
 
     /*

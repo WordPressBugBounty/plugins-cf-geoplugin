@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 9.0.2 =
+* Fixed escaped shortcode examples to preserve HTML markup while encoding shortcode brackets.
+* Fixed interactive map configuration output by safely serializing selectors and options as JSON.
+* Moved the Simple Shortcodes option to standard feature settings and kept Redis caching in beta settings.
+* Compatibility: improved WooCommerce Classic Checkout, Checkout Blocks, Store API, and HPOS order handling.
+* Fixed WooCommerce price conversion signs and rounding, customer geolocation handling, payment-country restrictions, and gateway settings output.
+
 = 9.0.1 =
 * Fixed license renewal synchronization for renewed subscription activations.
 * Added automatic renewal revalidation for valid subscription activations.

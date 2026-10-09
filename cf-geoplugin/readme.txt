@@ -5,7 +5,7 @@ Tags: geolocation, geotargeting, woocommerce, location, geoip
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 9.0.1
+Stable tag: 9.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Commercial: https://wpgeocontroller.com/
@@ -415,6 +415,12 @@ Please inform us if any of these errors occur via contact form on our website [h
 
 == Changelog ==
 
+= 9.0.2 =
+* Fixed escaped shortcode examples and interactive map configuration output.
+* Moved the Simple Shortcodes option to standard feature settings and kept Redis caching experimental.
+* Compatibility: improved WooCommerce Classic Checkout, Checkout Blocks, Store API, and HPOS order handling.
+* Fixed WooCommerce price conversion, geolocation, payment-country restrictions, and gateway settings output.
+
 = 9.0.1 =
 * Fixed license renewal synchronization for renewed subscription activations.
 * Added automatic renewal revalidation for valid subscription activations.
@@ -576,6 +582,9 @@ Please inform us if any of these errors occur via contact form on our website [h
 * Improved javascript algorithms
 
 == Upgrade Notice ==
+
+= 9.0.2 =
+* Maintenance release with shortcode and interactive map fixes plus WooCommerce checkout, HPOS, pricing, geolocation, and payment restriction improvements.
 
 = 9.0.1 =
 * Fixed license renewal synchronization for renewed subscription activations.
