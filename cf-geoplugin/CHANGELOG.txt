@@ -1,5 +1,13 @@
 == Changelog ==
 
+= 9.0.3 =
+* Security: moved dedicated Geo Controller API endpoints to HTTPS and removed the former automatic direct-IP HTTP downgrade.
+* API: added centralized, backward-compatible GET/POST transport selection; GET remains the default, while POST sends API parameters in the request body.
+* Added an optional Defender emergency direct-IP HTTP fallback that is disabled by default and excludes license keys, API secrets, authentication tokens, passwords, and renewal data.
+* Security: validated forwarding headers against trusted proxy and Cloudflare ranges, bounded and rate-limited public location requests, and restricted integration actions to administrators.
+* Security: safely JSON-encoded dynamic geolocation JavaScript property names and values so remote or cached data cannot escape the inline object.
+* Compatibility: preserved geolocation, Defender, licensing, API response handling, product information, Live News, and WordPress update integrations.
+
 = 9.0.2 =
 * Fixed escaped shortcode examples to preserve HTML markup while encoding shortcode brackets.
 * Fixed interactive map configuration output by safely serializing selectors and options as JSON.

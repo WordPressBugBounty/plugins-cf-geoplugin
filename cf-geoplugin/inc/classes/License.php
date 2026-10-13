@@ -454,14 +454,9 @@ if (!class_exists('CFGP_License')) :
                 'domain' => CFGP_U::get_host(true),
             ];
 
-            $request_url = CFGP_Defaults::API[(CFGP_Options::get('enable_ssl', 0) ? 'ssl_' : '') . 'authenticate'] . '?' . http_build_query(
-                $request_pharams,
-                '',
-                (ini_get('arg_separator.output') ?? '&amp;'),
-                PHP_QUERY_RFC3986
-            );
+            $request_url = CFGP_Defaults::API[(CFGP_Options::get('enable_ssl', 0) ? 'ssl_' : '') . 'authenticate'];
 
-            $response = CFGP_U::curl_get(CFGP_Defaults::falback_api_endpoints($request_url));
+            $response = CFGP_U::api_request(CFGP_Defaults::falback_api_endpoints($request_url), $request_pharams);
 
             if (empty($response)) {
                 CFGP_DB_Cache::delete('cfgp-license-response-success');
@@ -536,14 +531,9 @@ if (!class_exists('CFGP_License')) :
                 'domain'        => CFGP_U::get_host(true),
             ];
 
-            $request_url = CFGP_Defaults::API[(CFGP_Options::get('enable_ssl', 0) ? 'ssl_' : '') . 'authenticate'] . '?' . http_build_query(
-                $post_data,
-                '',
-                (ini_get('arg_separator.output') ?? '&amp;'),
-                PHP_QUERY_RFC3986
-            );
+            $request_url = CFGP_Defaults::API[(CFGP_Options::get('enable_ssl', 0) ? 'ssl_' : '') . 'authenticate'];
 
-            $response = CFGP_U::curl_get($request_url);
+            $response = CFGP_U::api_request($request_url, $post_data);
 
             /*
              * OK, we have some problems with some websites.

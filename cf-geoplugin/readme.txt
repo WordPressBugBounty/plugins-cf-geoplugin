@@ -5,7 +5,7 @@ Tags: geolocation, geotargeting, woocommerce, location, geoip
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 9.0.2
+Stable tag: 9.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Commercial: https://wpgeocontroller.com/
@@ -415,6 +415,14 @@ Please inform us if any of these errors occur via contact form on our website [h
 
 == Changelog ==
 
+= 9.0.3 =
+* Security: moved dedicated Geo Controller API endpoints to HTTPS and removed the former automatic direct-IP HTTP downgrade.
+* API: added centralized, backward-compatible GET/POST transport selection; GET remains the default, while POST sends API parameters in the request body.
+* Added an optional Defender emergency direct-IP HTTP fallback that is disabled by default and excludes license keys, API secrets, authentication tokens, passwords, and renewal data.
+* Security: validated forwarding headers against trusted proxy and Cloudflare ranges, bounded and rate-limited public location requests, and restricted integration actions to administrators.
+* Security: safely JSON-encoded dynamic geolocation JavaScript property names and values so remote or cached data cannot escape the inline object.
+* Compatibility: preserved geolocation, Defender, licensing, API response handling, product information, Live News, and WordPress update integrations.
+
 = 9.0.2 =
 * Fixed escaped shortcode examples and interactive map configuration output.
 * Moved the Simple Shortcodes option to standard feature settings and kept Redis caching experimental.
@@ -582,6 +590,9 @@ Please inform us if any of these errors occur via contact form on our website [h
 * Improved javascript algorithms
 
 == Upgrade Notice ==
+
+= 9.0.3 =
+* Security and API transport release with HTTPS hardening, trusted-proxy validation, protected location requests and integration actions, safe JavaScript serialization, configurable GET/POST support, and an opt-in emergency Defender fallback.
 
 = 9.0.2 =
 * Maintenance release with shortcode and interactive map fixes plus WooCommerce checkout, HPOS, pricing, geolocation, and payment restriction improvements.

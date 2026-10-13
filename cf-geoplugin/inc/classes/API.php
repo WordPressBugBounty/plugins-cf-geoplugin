@@ -390,12 +390,7 @@ if (!class_exists('CFGP_API', false)) :
                     'spam_check'   => $spam_check,
                 ]);
                 // Build URL
-                $request_url = CFGP_Defaults::API[(CFGP_Options::get('enable_ssl', 0) ? 'ssl_' : '') . 'main'] . '?' . http_build_query(
-                    $request_pharams,
-                    '',
-                    (ini_get('arg_separator.output') ?? '&amp;'),
-                    PHP_QUERY_RFC3986
-                );
+                $request_url = CFGP_Defaults::API[(CFGP_Options::get('enable_ssl', 0) ? 'ssl_' : '') . 'main'];
                 // Fetch new informations
                 if (!empty($renewal_request)) {
                     $this->renewal_debug('http_sent', [
@@ -404,14 +399,24 @@ if (!class_exists('CFGP_API', false)) :
                         'fingerprint' => $renewal_request['fingerprint'],
                     ]);
                 }
-            $response = CFGP_U::curl_get($request_url, $this->renewal_request_headers($renewal_request));
+                $response = CFGP_U::api_request($request_url, $request_pharams, $this->renewal_request_headers($renewal_request));
                 if (!empty($renewal_request)) {
                     $this->renewal_debug('response_received', ['mode' => $this->renewal_mode()]);
                 }
 
                 // Fallback to return by IP
                 if (!$response) {
-                    $response = CFGP_U::curl_get(CFGP_Defaults::falback_api_endpoints($request_url), $this->renewal_request_headers($renewal_request));
+                    $response = CFGP_U::api_request(
+                        CFGP_Defaults::falback_api_endpoints($request_url),
+                        $request_pharams,
+                        $this->renewal_request_headers($renewal_request)
+                    );
+                }
+
+                // Defender may use the explicitly enabled emergency HTTP endpoint
+                // only after all HTTPS geolocation requests have failed.
+                if (!$response) {
+                    $response = $this->defender_emergency_http_request($request_url, $request_pharams);
                 }
 
                 // Fix data and save to cache
@@ -519,6 +524,80 @@ if (!class_exists('CFGP_API', false)) :
 
             // Return
             return apply_filters('cfgp/api/render/response', $return);
+        }
+
+        /**
+         * Use the opt-in, unauthenticated Defender geolocation fallback.
+         *
+         * HTTP responses can be intercepted or modified. Sensitive request fields,
+         * renewal headers, and renewal response data must never cross this path.
+         *
+         * @param string $request_url    Primary HTTPS geolocation endpoint.
+         * @param array  $request_params Existing geolocation request parameters.
+         * @return array|false
+         */
+        private function defender_emergency_http_request($request_url, $request_params)
+        {
+            if (
+                !defined('CFGP_EMERGENCY_HTTP_FALLBACK')
+                || CFGP_EMERGENCY_HTTP_FALLBACK !== true
+                || (
+                    !CFGP_Options::get('enable_defender', 0)
+                    && !CFGP_Options::get('block_tor_network', 0)
+                )
+            ) {
+                return false;
+            }
+
+            $scheme = strtolower((string)wp_parse_url($request_url, PHP_URL_SCHEME));
+            $path   = (string)wp_parse_url($request_url, PHP_URL_PATH);
+
+            // This exception is limited to the main geolocation route.
+            if ($scheme !== 'https' || rtrim($path, '/') !== '/v3') {
+                return false;
+            }
+
+            $safe_params = [];
+            foreach ((array)$request_params as $name => $value) {
+                if (preg_match('/(?:license|secret|token|password|credential|authorization|api[_-]?key|(?:^|[_-])(?:auth|key|nonce|cookie|pass|username|user_login|user_pass)(?:$|[_-]))/i', (string)$name)) {
+                    continue;
+                }
+
+                $safe_params[$name] = $value;
+            }
+
+            $endpoint = 'http://159.203.150.139/v3/';
+            $transport_params = [
+                'redirection'        => 0,
+                'reject_unsafe_urls' => true,
+            ];
+            $method = defined('CFGP_API_REQUEST_METHOD')
+                ? strtoupper(trim((string)CFGP_API_REQUEST_METHOD))
+                : 'GET';
+
+            if ($method === 'POST') {
+                $response = CFGP_U::curl_post(
+                    $endpoint,
+                    $safe_params,
+                    [
+                        'Accept'       => 'application/json',
+                        'Content-Type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+                    ],
+                    $transport_params
+                );
+            } else {
+                if (!empty($safe_params)) {
+                    $endpoint .= '?' . http_build_query($safe_params, '', '&', PHP_QUERY_RFC3986);
+                }
+
+                $response = CFGP_U::curl_get($endpoint, [], $transport_params);
+            }
+
+            if (is_array($response)) {
+                unset($response['license_renewal']);
+            }
+
+            return $response;
         }
 
         /*

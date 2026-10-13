@@ -1210,16 +1210,13 @@ LIMIT 1
             $api_params = [
                 'referer' => CFGP_U::get_host(true),
             ];
-            $api_url = add_query_arg(
-                $api_params,
-                CFGP_Defaults::API[(CFGP_Options::get('enable_ssl', 0) ? 'ssl_' : '')
-                    . 'converter']."/{$from}/{$to}/{$content}"
-            );
+            $api_url = CFGP_Defaults::API[(CFGP_Options::get('enable_ssl', 0) ? 'ssl_' : '')
+                . 'converter']."/{$from}/{$to}/{$content}";
 
-            $result = CFGP_U::curl_get($api_url);
+            $result = CFGP_U::api_request($api_url, $api_params);
 
             if (!$result) {
-                $result = CFGP_U::curl_get(CFGP_Defaults::falback_api_endpoints($api_url));
+                $result = CFGP_U::api_request(CFGP_Defaults::falback_api_endpoints($api_url), $api_params);
             }
 
             if (
@@ -1398,15 +1395,12 @@ LIMIT 1
         ];
         $from    = strtoupper(sanitize_text_field($_REQUEST['cfgp_currency_from'] ?? ''));
         $to      = strtoupper(sanitize_text_field($_REQUEST['cfgp_currency_to'] ?? ''));
-        $api_url = add_query_arg(
-            $api_params,
-            CFGP_Defaults::API[(CFGP_Options::get('enable_ssl', 0) ? 'ssl_' : '') . 'converter'].'/'.$from.'/'.$to.'/'.$amount
-        );
+        $api_url = CFGP_Defaults::API[(CFGP_Options::get('enable_ssl', 0) ? 'ssl_' : '') . 'converter'].'/'.$from.'/'.$to.'/'.$amount;
 
-        $result = CFGP_U::curl_get($api_url);
+        $result = CFGP_U::api_request($api_url, $api_params);
 
         if (!$result) {
-            $result = CFGP_U::curl_get(CFGP_Defaults::falback_api_endpoints($api_url));
+            $result = CFGP_U::api_request(CFGP_Defaults::falback_api_endpoints($api_url), $api_params);
         }
 
         if (isset($result['return'])) {
