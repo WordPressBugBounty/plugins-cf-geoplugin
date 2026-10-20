@@ -5,7 +5,7 @@ Tags: geolocation, geotargeting, geoip, woocommerce, redirect
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 9.0.5
+Stable tag: 9.0.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Commercial: https://wpgeocontroller.com/
@@ -237,6 +237,9 @@ Start with the [documentation](https://wpgeocontroller.com/documentation). If th
 
 == Changelog ==
 
+= 9.0.6 =
+* Fixed a fatal error during WordPress initialization caused by an early user capability check. Deferred plugin integration notifications until WordPress user functions are available.
+
 = 9.0.5 =
 * Reworked the WordPress.org readme with clearer geolocation, geotargeting, WooCommerce, access-control, privacy, caching, and licensing guidance.
 * Added accessible Copy controls for shortcode, geo tag, CSS property, and Google Maps syntax examples, with fallback and translated feedback.
@@ -281,6 +284,9 @@ Start with the [documentation](https://wpgeocontroller.com/documentation). If th
 * CSS display controls now preserve flex, grid, inline, inline-block, table, and other display modes.
 
 == Upgrade Notice ==
+
+= 9.0.6 =
+* Fixed a fatal error during WordPress initialization caused by an early user capability check. Deferred plugin integration notifications until WordPress user functions are available.
 
 = 9.0.5 =
 * Improved the primary admin interfaces and added accessible syntax Copy controls without changing plugin business logic.
